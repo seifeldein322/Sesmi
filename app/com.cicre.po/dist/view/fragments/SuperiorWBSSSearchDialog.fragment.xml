@@ -1,0 +1,121 @@
+<core:FragmentDefinition class="sapUiSizeCompact"
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core"
+      
+        xmlns:l="sap.ui.layout"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:commons="sap.ui.commons"
+        xmlns:table="sap.ui.table"
+        xmlns:ui="sap.ui.table"
+        xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog
+    afterClose="onAfterClose"
+    contentWidth="500px"
+            class="sapUiSizeCompact"
+            title="{i18n>SupeiorWBS}">
+        <content>
+
+            <f:SimpleForm
+					layout="ResponsiveGridLayout" 
+					labelSpanXL="4" 
+					labelSpanL="6" 
+					labelSpanM="4" 
+					labelSpanS="4"
+					adjustLabelSpan="false" 
+					emptySpanXL="0" 
+					emptySpanL="0" 
+					emptySpanM="0" 
+					emptySpanS="0" 
+					columnsXL="4" 
+					columnsL="2" 
+					columnsM="4"
+					class="editableForm">
+                <f:content>
+                   
+                 
+                  
+
+                    <Label text="{i18n>Description / Code}">
+                    </Label>
+                    <Input id="idDesc" />
+					<Label text="{i18n>Length}">
+                    </Label>
+                    <Input id="idlenth" type="Number" width="20%" />
+
+                </f:content>
+            </f:SimpleForm>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button type="Emphasized" text="{i18n>SearchSupeiorWBS}" press="handleSearWBS" icon="sap-icon://search"/>
+            </Toolbar>
+            
+             <ui:Table id="idListTable" 
+              rows="{localJson>/SupeiorWBSSet}" 
+			 visibleRowCount="8"  
+			 rowSelectionChange="onSelectCheque"  
+			 selectionMode="Single"
+			enableSelectAll="false"
+			 selectionBehavior="Row"
+			 >
+             	<ui:columns  >
+					<ui:Column width="85%" autoResizable="true">
+					<Label text="{i18n>IdNumber}"/>
+					<ui:template>
+					<Text text="{localJson>IdNumber}"/>
+					</ui:template>
+					</ui:Column>
+                    <ui:Column width="85%" autoResizable="true">
+					<Label text="{i18n>Description}"/>
+					<ui:template>
+					<Text text="{localJson>IdText}"/>
+					</ui:template>
+					</ui:Column>
+				     </ui:columns  >
+
+              </ui:Table>
+           <!-- <Table id="IdBuildingTable"
+                            mode="MultiSelect"
+                           inset="false"
+                           growing="true"
+                           growingThreshold="100"
+                           growingScrollToLoad="true"
+                            selectionBehavior="Row"
+                            rowSelectionChange="onSelectCheque"
+                           items="{localJson>/SupeiorWBSSet}"
+                            >
+
+                        <columns>
+                         <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="{i18n>IdNumber}" width="150px"/>
+                            </Column>
+                            <Column minScreenWidth="" demandPopin="false" width="150px">
+                                <Text text="{i18n>IdText}" />
+                            </Column>
+                           
+                            
+                        </columns>
+                        <items>
+                            <ColumnListItem  >
+                                <cells>
+                                  <Text text="{localJson>IdNumber}" width="150px"></Text>
+                                    <Text text="{localJson>IdText}" width="150px"></Text>
+									
+
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>-->
+
+<!--type="Navigation" press=".onPress"-->
+
+
+
+
+                    
+        </content>
+        <buttons>
+            
+            <Button text="{i18n>Cancel}" press="_handleCancelPresswbs" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

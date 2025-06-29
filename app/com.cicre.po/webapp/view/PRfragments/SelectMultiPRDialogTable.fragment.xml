@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" 
+xmlns:core="sap.ui.core" xmlns:t="sap.ui.table">
+	<t:Table rows="{localJson>/PurchaseRequisitionSet}"
+	 selectionBehavior="Row"
+	 
+	 selectionMode="MultiToggle"
+	selectionChange="onPRSelectionChange" >
+		<t:columns>
+			<t:Column>
+				<t:label 	>
+					<Label text= "{i18n>PRNO} "	/> 
+				</t:label>
+
+				<t:template >
+					<Text text="{localJson>PrNo}" 	/>
+				</t:template>
+			  </t:Column>
+
+			
+
+
+				<t:Column>
+				<t:label>
+						<Label text= "{i18n>Network} "	/> 
+				</t:label>
+			<t:template >
+					<Text text="{localJson>Network}" 	/>
+				</t:template>
+			</t:Column>
+
+			<t:Column >
+				<t:label>
+						<Label text="{i18n>Activity}"/> 
+				</t:label>
+			<t:template >
+					<Text text="{localJson>ActivityNumber}" 	/>
+				</t:template>
+			</t:Column>
+
+			<t:Column>
+				<t:label>
+					<Label text="{i18n>Description}"/>
+				</t:label>
+				<t:template>
+					<Text text="{localJson>ActivityNumberDesc}"/>
+				</t:template>
+			</t:Column>
+
+		
+
+		
+	
+		</t:columns>
+	</t:Table>
+</core:FragmentDefinition>

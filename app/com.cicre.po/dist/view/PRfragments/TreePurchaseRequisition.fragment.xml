@@ -1,0 +1,99 @@
+     <core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ui.table"
+	xmlns="sap.m">
+
+                  <ui:TreeTable id="idTreeTablePurchaseRequisition"
+                                        rows="{path:'localJson>/PRItemSet', parameters: {arrayNames:['Categories']}}"
+                                        selectionMode="Single" enableSelectAll="false" ariaLabelledBy="title"
+                                        visibleRowCount="9">
+                                        <ui:extension>
+                                            <OverflowToolbar>
+
+                                                <ToolbarSpacer />
+                                                <Button text="Collapse all" press="onCollapseAllPR" />
+                                                <Button text="Expand all" press="onExpandFirstLevelPR" />
+                                            </OverflowToolbar>
+                                        </ui:extension>
+                                        <ui:columns>
+                                            <ui:Column width="12rem">
+                                                <Label text="Services" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Data}" wrapping="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="11rem">
+                                                <Label text="Service type" />
+                                                <ui:template>
+                                 
+                                                    <ComboBox items="{localJson>/Service_TYPE}" enabled="false"
+                                                        visible="{= !!${localJson>Eancat}}"
+                                                        selectedKey="{localJson>Eancat}" change="hanleChane">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                            <ui:Column width="30rem">
+                                                <Label text="Service Description" />
+                                                <ui:template>
+                                                    <!--<Text text="{localJson>LongDesc}}" wrapping="false" />-->
+                                                    <TextArea value="{localJson>LongDesc}" enabled="false" rows="{  parts: 
+							[
+							{path: 'localJson>Indicator'}						
+							] 
+							, formatter: 'com.cicre.po.model.formatter.numOfRows'}" wrapping="false" width="100%"
+                                                        visible="{= !!${localJson>LongDesc}}" />
+                                                </ui:template>
+                                            </ui:Column>
+                           
+                                            <ui:Column width="5rem">
+                                                <Label text="UOM" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Uom}" wrapping="false"
+                                                        visible="{= !!${localJson>Uom}}" enabled="false" />
+
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                            <ui:Column width="9rem">
+                                                <Label text="Quantity" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Qty}" wrapping="false" type="Number"
+                                                       visible="{= !!${localJson>Qty} === false ? false : ${localJson>Eancat} === 'U' ? false : true }"
+                                                       liveChange="onChangeQty" enabled="false" />
+                                                  
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="5rem">
+                                                <Label text="Price" />
+                                                <ui:template>
+                                                    <Input value="{localJson>price}" wrapping="false"
+                                                        visible="{= !!${localJson>price}}" enabled="false" />
+
+                                                </ui:template>
+                                            </ui:Column>
+                                 
+                                            <ui:Column width="8rem">
+                                                <Label text="Amount" />
+
+                                                <ui:template>
+
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>PriceUnit'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        wrapping="false"
+                                                        visible="{= !!${localJson>PriceUnit} === false ? false : ${localJson>Eancat} === 'U' ? false :  ${localJson>live} === 'one' ? false : true  }"
+                                                        enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:TreeTable>
+            
+ </core:FragmentDefinition>

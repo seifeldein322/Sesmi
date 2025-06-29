@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog resizable="true" class="sapUiSizeCompact" title="{i18n>Variation Order}">
+	
+		<content>
+			<Panel width="80rem">
+				<Table id="idsrvDelete">
+					<columns>
+						
+						<Column width = "5rem" ><Text text="{i18n>Building Id}"/></Column>
+                        <Column width = "10rem"><Text text="{i18n>Contractual indicator}"/></Column>
+                        <Column width = "25rem" ><Text text="{i18n>short text}"/></Column>
+						<Column width = "4rem"><Text text="{i18n>UOM}"/></Column>
+						
+                        <Column width = "10rem"><Text text="{i18n>contract qty}"/></Column>
+                        <Column width = "10rem"><Text text="{i18n>price}"/></Column>
+                         <Column width = "10rem"><Text text="{i18n>Amount}"/></Column>
+					</columns>
+				</Table>
+			</Panel>
+		</content>
+		<buttons>
+			<Button text="{i18n>Close}" press="handleCloseVariationsrv"/>
+<!--	<Button  type="Emphasized"
+				visible="{= ${detailView>/Visible}}"/>-->
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

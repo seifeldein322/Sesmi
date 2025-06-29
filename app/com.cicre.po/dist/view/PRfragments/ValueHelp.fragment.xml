@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>valueHelpSelectValue}" class="sapUiPopupWithPadding" search="handleValueHelpSearch"
+		confirm="handleValueHelpClose" cancel="handleValueHelpClose">
+		
+	</SelectDialog>
+</core:FragmentDefinition>

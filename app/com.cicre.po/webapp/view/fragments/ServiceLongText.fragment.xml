@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" 
+xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog resizable="true" type='Message'>
+		<content>
+			<Text id="idLongText" ></Text>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://decline" tooltip="{i18n>Close}" type="Emphasized"  press="onCloseLongTextFragment"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

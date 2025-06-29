@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ActionSheet
+	afterClose="onVoewAfterClose"
+		title="Choose Your Action"
+		showCancelButton="true"
+		placement="Bottom">
+		<buttons>
+			<Button text="{i18n>ServiceView}" type="Accept" press="addcontractualsc1" />
+			<Button text="{i18n>BuildingServiceView}" type="Accept"  press="addcontractualsc2" />
+			<Button text="{i18n>BuildingServiceGrpView}" type="Accept"  press="addcontractualsc3" />
+			
+           
+			
+
+			</buttons>
+	</ActionSheet>
+</core:FragmentDefinition>

@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="{i18n>Refrence Contract}" ok="onContractValueHelpOkPress" cancel="onContractValueHelpCancelPress" supportRanges="false"
+		key="PurchDoc" descriptionKey="FundCenterName" resizable="true">
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search="onContractFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="Contract" name="n1" label="{i18n>homeContractNo}">
+						<fb:control>
+							<m:Input id="idSearchByContract" showValueHelp="true"   change="ch_SearchByContract" valueHelpRequest="onDisplaySearchContractRefrence" maxLength="40" name="DocType"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="Contrac" name="n1" label="{i18n>Vendor}">
+						<fb:control>
+							<m:Input id="idSearchByVendor" showValueHelp="true"  change="ch_SearchByVendor"  valueHelpRequest="onDisplaySearchVendorDialog" maxLength="40" name="CompCode"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<!--<fb:FilterGroupItem groupName="Contract" name="n3" label="{i18n>contractVendor}">
+						<fb:control>
+							<m:Input id="idVendor" showValueHelp="true" valueHelpRequest="onValueHelpPress" maxLength="10" name="Vendor"/>
+						</fb:control>
+					</fb:FilterGroupItem>-->
+					<!--<fb:FilterGroupItem groupName="Contract" name="n4" label="{i18n>contractDocType}">
+						<fb:control>
+							<m:Input id="idDocType" showValueHelp="true" valueHelpRequest="onValueHelpPress" maxLength="10" name="DocType"/>
+						</fb:control>
+					</fb:FilterGroupItem>-->
+					<!--<fb:FilterGroupItem groupName="Contract" name="n5" label="{i18n>contractProject}">-->
+					<!--	<fb:control>-->
+					<!--		<m:Input id="idProject" maxLength="24" showValueHelp="true" valueHelpRequest="onValueHelpPress" name="ProjIdExt"/>-->
+					<!--	</fb:control>-->
+					<!--</fb:FilterGroupItem>-->
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

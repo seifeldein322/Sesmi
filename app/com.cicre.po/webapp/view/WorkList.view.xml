@@ -1,0 +1,238 @@
+<mvc:View
+	controllerName="com.cicre.po.controller.WorkList"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core"
+	xmlns:footerbar="sap.ushell.ui.footerbar"
+	>
+
+	<semantic:FullscreenPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="true"
+		title="{i18n>SearchContracts}">
+		<semantic:content>
+			<fb:FilterBar id="filterBar" header="{i18n>Searchavailablecontracts}" reset="onReset" search="onSearchContract" clear="onClear"
+			cancel="onCancel" filtersDialogClosed="onFiltersDialogClosed" showRestoreButton="true" showClearButton="true" showCancelButton="true">
+			<fb:filterItems>
+				<fb:FilterItem name="A" label="{i18n>Company}">
+					<fb:control>
+						<Input id="idSearchByCompany" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="onDisplaySearchCompDialog"
+							change="onSearchCompanyChange" showSuggestion="true" suggest="handleSuggestCompCode" suggestionItems="{/ValueHelpSet}" suggestionItemSelected="onSelectCompanySuggestion">
+							<suggestionItems>
+								<core:Item text="{IdText}" key="{IdNumber}"/>
+							</suggestionItems>
+						</Input>
+					</fb:control>
+				</fb:FilterItem>
+				<fb:FilterItem name="s" label="{i18n>Project}">
+					<fb:control>
+						<Input id="idSearchByProjecttt" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="onDisplaySearchProject"
+							change="onSearchProjectChange" showSuggestion="true" suggest="handleSuggestProject" suggestionItems="{/ValueHelpSet}" suggestionItemSelected="onSelectCompanySuggestion">
+							<suggestionItems>
+								<core:Item text="{IdText}" key="{IdNumber}"/>
+							</suggestionItems>
+						</Input>
+					</fb:control>
+				</fb:FilterItem>
+				<fb:FilterItem name="B" label="{i18n>Contract}">
+					<fb:control>
+						<Input id="idSearchByContract" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="onDisplaySearchContract"
+							change="onSearchContractChange" showSuggestion="true" suggest="handleSuggestContract" suggestionItems="{/ValueHelpSet}" suggestionItemSelected="onSelectCompanySuggestion">
+							<suggestionItems>
+								<core:Item text="{IdText}" key="{IdNumber}"/>
+							</suggestionItems>
+						</Input>
+					</fb:control>
+				</fb:FilterItem>
+				<!--<fb:FilterItem name="B" label="{i18n>Contract}">
+					<fb:control>
+						<Input id="idSearchByPO" change="onSearchPOChange"/>
+					</fb:control>
+				</fb:FilterItem>-->
+			<fb:FilterItem name="f" label="{i18n>WBS}">
+					<fb:control>
+						<Input id="idSupeiorWBS" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="onDisplaySearchidSupeiorWBSDialog"
+							change="onSearchWBS" showSuggestion="true" suggest="handleSuggestContract" suggestionItems="{/ValueHelpSet}" suggestionItemSelected="onSelectCompanySuggestion">
+							<suggestionItems>
+								<core:Item text="{IdText}" key="{IdNumber}"/>
+							</suggestionItems>
+						</Input>
+					</fb:control>
+				</fb:FilterItem>
+				
+				<fb:FilterItem name="D" label="{i18n>Vendor}">
+					<fb:control>
+						<Input id="idSearchByVendor" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="onDisplaySearchVendorDialog"
+							showSuggestion="true" suggest="handleSuggestVendor" suggestionItems="{/ValueHelpSet}"
+							change="onSearchByVendor"
+							 suggestionItemSelected="onSelectVendorSuggestion">
+							<suggestionItems>
+								<core:Item text="{IdText}" key="{IdNumber}"/>
+							</suggestionItems>
+						</Input>
+					</fb:control>
+				</fb:FilterItem>
+					<fb:FilterItem name="y" label="{i18n>Document Type}">
+					<fb:control>
+						<Input id="idSearchByDecTy" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="onDisplaySearchDecTyDialog"
+							showSuggestion="true" change="onSearchSuggestDecTy"
+							suggest="handleSuggestDecTy" suggestionItems="{/ValueHelpSet}" suggestionItemSelected="onSelectDecTy">
+							<suggestionItems>
+								<core:Item text="{IdText}" key="{IdNumber}"/>
+							</suggestionItems>
+						</Input>
+					</fb:control>
+				</fb:FilterItem>
+				<fb:FilterItem name="O" label="{i18n>PurchaseOrganization}" visible="false">
+					<fb:control>
+							<Input id="idPurchaseOrganization" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="onDisplaySearchPOrgDialog"
+							 visible="false" change="onSearchPOrgChange" showSuggestion="true" suggest="handleSuggestPOrg" suggestionItems="{/ValueHelpSet}" suggestionItemSelected="onSelectPOrgSuggestion">
+							<suggestionItems>
+								<core:Item text="{IdText}" key="{IdNumber}"/>
+							</suggestionItems>
+							</Input>
+
+					</fb:control>
+				</fb:FilterItem>
+
+
+					<fb:FilterItem name="G" label="{i18n>serviceType}">
+					<fb:control>
+							<Input id="idserviceType" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="onserviceTypeValueHelpPress"
+							change="onserviceTypeChange" showSuggestion="true" suggest="handleserviceType" suggestionItems="{/ValueHelpSet}" suggestionItemSelected="onSelectserviceType">
+							<suggestionItems>
+								<core:Item text="{IdText}" key="{IdNumber}"/>
+							</suggestionItems>
+							</Input>
+					</fb:control>
+				</fb:FilterItem>
+
+					<fb:FilterItem name="z" label="{i18n>ConstructionType}">
+					<fb:control>
+	                  <ComboBox id="idFConstructionType" selectedKey="{localJson>/ConstructionType}" enabled="{localJson>/editMode}" items="{path: '/ValueHelpSet', 
+                                        filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'ConstType'}]}">
+                                        <items>
+                                            <core:Item text="{IdText}" key="{IdNumber}"/>
+                                        </items>
+							</ComboBox>		
+							</fb:control>
+				</fb:FilterItem>
+
+				<fb:FilterItem name="C" label="{i18n>Exempted}">
+					<fb:control>
+	                    <ComboBox id="idExemptedType" selectedKey="{localJson>/Exempted}" enabled="{localJson>/editMode}">
+								<items>
+									<core:ListItem key="YES" text="YES"/>
+									<core:ListItem key="NO" text="NO"/>
+								</items>
+						</ComboBox>		
+					</fb:control>
+				</fb:FilterItem>
+				<fb:FilterItem name="Cr" label="{i18n>CreatedBy}">
+					<fb:control>
+	                   <Input id="idCreatedBy"  change="onCreatedByChange" />
+					</fb:control>
+				</fb:FilterItem>
+			<!--	<fb:FilterItem name="G" label="{i18n>PurchaseGroup}">
+					<fb:control>
+							<Input id="idPurchaseGroup" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="onDisplaySearchPGrpDialog"
+							change="onSearchPGrpChange" showSuggestion="true" suggest="handleSuggestPGrp" suggestionItems="{/ValueHelpSet}" suggestionItemSelected="onSelectPGrpSuggestion">
+							<suggestionItems>
+								<core:Item text="{IdText}" key="{IdNumber}"/>
+							</suggestionItems>
+							</Input>
+					</fb:control>
+				</fb:FilterItem>-->
+			</fb:filterItems>
+		</fb:FilterBar>
+			<Table
+				id="table"
+				width="auto"
+				class="sapUiResponsiveMargin"
+				items="{
+					path: 'poModel>/ContractPOHeaderSet'
+				}"
+				noDataText="No Data"
+				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished="onUpdateFinished">
+<columns>
+                <Column><Text text="{i18n>Contract}"/></Column>
+				<Column><Text text="{i18n>PO}"/></Column>
+				
+			
+			
+				<Column><Text text="{i18n>Vendor}"/></Column>
+					<Column><Text text="{i18n>CreatedBy}"/></Column>
+				<Column><Text text="{i18n>Status}"/></Column>  <!--Status-->
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="onPressPO">
+					<cells>
+					<Text text="{poModel>PoNumber}"/> 
+					<Text text="{poModel>PurchDoc}"/>
+				
+				
+						
+					<!--	<Text text="{poModel>DocType}"/>
+						<ComboBox selectedKey="{poModel>ContractType}" enabled="false"
+                                    
+                                    >
+								<items>
+									<core:Item text="Lump Sum" key="LumpSum"/>
+									<core:Item text="Remeasured" key="Remeasured"/>
+									<core:Item text="Mixed" key="Mixed"/>
+								</items>
+                                        
+                        </ComboBox>-->
+							<!--<ComboBox selectedKey="{poModel>DocType}" enabled="false"
+                                    
+                                    items="{path: '/ValueHelpSet', 
+                                        filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'DocType'}]}">
+                                        <items>
+                                            <core:Item text="{IdText}" key="{IdNumber}"/>
+                                        </items>
+                                        
+                        </ComboBox>-->
+						<!--<ComboBox selectedKey="{poModel>PurchOrg}" enabled="false"
+                                    
+                                    items="{path: '/ValueHelpSet', 
+                                        filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'PORG'}]}">
+                                        <items>
+                                            <core:Item text="{IdText}" key="{IdNumber}"/>
+                                        </items>
+                                        
+                        </ComboBox>-->
+					  	<Text text="{poModel>VendorName}"/>	
+					<!--	<ComboBox selectedKey="{poModel>Vendor}" enabled="false"
+                                    
+                                    items="{path: '/ValueHelpSet', 
+                                        filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'Vendor'}]}">
+                                        <items>
+                                            <core:Item text="{IdText}" key="{IdNumber}"/>
+                                        </items>
+                                        
+                        </ComboBox>-->
+							<Text text="{poModel>CreatedBy}"/>
+						<ObjectStatus 
+						text="{poModel>TempStatus}" 
+						state="{= ${poModel>Status} === 'SUBMITTED' ? 'Success' : ${qsModel>ContractTermsStatus} === 'C' ? 'None' : 'Warning'}"					
+							/>
+					</cells>
+				</ColumnListItem>
+			</items>
+			</Table>
+		</semantic:content>
+
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="{i18n>CreateContract}" press="onCreateContractPress"/>
+		</semantic:positiveAction>
+
+
+	</semantic:FullscreenPage>
+
+</mvc:View>

@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:vh="sap.ui.comp.valuehelpdialog" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<vh:ValueHelpDialog ok="onBuildingValueHelpOkPress" cancel="CancelPressBuilding" title="{i18n>contractSelectContract}" 
+		supportRanges="false" supportRangesOnly="false" key="BuildingNo" class="sapUiSizeCompact">
+		<vh:filterBar>
+			<fb:FilterBar advancedMode="true" showRestoreButton="true" filtersDialogSearchForFilter="onVHContractSearch" filterBarExpanded="true"
+				search="handleSearchBuildingPressFilter" filtersDialogSearch="onVHContractSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="Contract" name="n1" label="{i18n>Zone}">
+						<fb:control>
+							<Input id="onSearchZonefilter_Id" valueHelpRequest="onDisplaySearchZone" showValueHelp="true"   change="changeZone" maxLength="70"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="Contract" name="n2" label="{i18n>Model}">
+						<fb:control>
+							<Input id="onSearchModelfilter_Id" showValueHelp="true"   valueHelpRequest="onDisplaySearchModelfilter" change="changeModel" maxLength="70"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+						<fb:FilterGroupItem groupName="Contract" name="n3" label="{i18n>Building or WBS}">
+						<fb:control>
+						<MultiComboBox id="idBuildingCategory"  selectedKeys="BUILD" >
+								<items>
+									<core:Item key="BUILD" text="{i18n>displayBuildingId}"/>
+									<core:Item key="WBS" text="{i18n>displayWBS}"/>
+								</items>
+							</MultiComboBox>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="Contract" name="n4" label="{i18n>Group}">
+						<fb:control>
+							<Input id="onSearchGroupfilter" showValueHelp="true"  change="changeGroup" valueHelpRequest="onDisplaySearGroupfilter" maxLength="70"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="Contract" name="n5" label="{i18n>Building}">
+						<fb:control>
+							<Input id="onSearchBildingfilter_Id"  change="changeBuilding" showValueHelp="true" valueHelpRequest="onDisplaySearBuildingfilter" maxLength="70"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				
+				
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</vh:filterBar>
+	</vh:ValueHelpDialog>
+</core:FragmentDefinition>

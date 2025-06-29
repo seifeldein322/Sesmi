@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	
+	<SelectDialog noDataText="No Data Found"
+	 title="Select Boq" 
+	 search="handleSearchSubGroupBoq " 
+	 confirm="onSelectSubGroupBoqList"
+	cancel="onSelectSubGroupBoqList"
+	>
+		
+		<StandardListItem title="{BoqSub}" type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

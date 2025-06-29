@@ -1,0 +1,2 @@
+sap.ui.define(["com/cicre/po/controller/BaseController","sap/ui/model/json/JSONModel"],function(e,t){"use strict";return e.extend("com.cicre.po.controller.App",{onInit:function(){var e,o,r=this.getView().getBusyIndicatorDelay();e=new t({busy:true,delay:0});this.setModel(e,"appView");o=function(){e.setProperty("/busy",false);e.setProperty("/delay",r)}}})});
+//# sourceMappingURL=App.controller.js.map

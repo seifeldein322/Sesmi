@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ActionSheet
+	afterClose="onActionAfterClose"
+		title="Choose Your Action"
+		showCancelButton="true"
+		placement="Bottom">
+		<buttons>
+			<Button text="{i18n>Building}" type="Accept" press="onBuildingSelectionValueHelpPress"  visible="false" id="idonAddBuildings"  />
+			<Button text="{i18n>WBS}" type="Accept"  press="onWBSSelectionValueHelpPressB"   visible="false" id="idonAddWBS" />
+			<Button text="{i18n>PurchaseRequisition}" type="Accept"  press="onWBSSelectionValueHelpPressB"   visible="false" id="idAddPurchaseRequisition" />
+			<Button text="{i18n>Building}" type="Accept" press="onBuildingSelectionValueHelpPressc" visible="false" id="idonAddBuildingsC" /> <!--onAddBuildingsCreate-->
+			<Button text="{i18n>WBS}" type="Accept"  press="onWBSSelectionValueHelpPressB" visible="true" id="idonAddWBSC"  /> <!--onAddWBSCreate-->
+		   <Button text="{i18n>PurchaseRequisition}" type="Accept"  press="onWBSSelectionValueHelpPressB"   visible="true" id="idAddPurchaseRequisitionc" />
+	
+
+			</buttons>
+	</ActionSheet>
+</core:FragmentDefinition>

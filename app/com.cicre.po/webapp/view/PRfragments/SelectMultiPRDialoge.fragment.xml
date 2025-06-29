@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:vh="sap.ui.comp.valuehelpdialog" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<vh:ValueHelpDialog ok="onPRSelectionChange" cancel="onPRContractClose" title="{i18n>PurchaseRequisition}" 
+	 supportRanges="false" supportRangesOnly="false" key="PrNo" class="sapUiSizeCompact">
+			<vh:filterBar>
+
+			<fb:FilterBar advancedMode="true" showRestoreButton="true" filtersDialogSearchForFilter="onVHContractSearch" filterBarExpanded="true"
+				search="handleSearchPRPress" filtersDialogSearch="onVHContractSearch" isRunningInValueHelpDialog="true" >
+                <fb:filterGroupItems>
+
+					<fb:FilterGroupItem groupName="PR" name="n1" label="{i18n>PRNO}" > 
+						<fb:control>
+							<Input id="idPRNODialog"  name="PRNoValueHelp"  showValueHelp="true"   valueHelpRequest="onValueHelpPress" maxLength="50"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+
+
+					<fb:FilterGroupItem groupName="PR" name="n2" label="{i18n>Network}" >
+						<fb:control>
+							<Input id="idSearchNetworkDialog"  name="SearchNetworkDialog"   valueHelpRequest="onValueHelpPress" showValueHelp="true"   change="cleanWBSDialog" maxLength="50"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+ 
+					<fb:FilterGroupItem groupName="PR" name="n3" label="{i18n>Activity}" >
+						<fb:control>
+							<Input id="idSearchActivityDialog"   name="SearchActivityDialog"  valueHelpRequest="onValueHelpPress" showValueHelp="true"   change="cleanWBSDialog" maxLength="50"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+
+               </fb:filterGroupItems>
+				</fb:FilterBar>
+			</vh:filterBar>
+		
+	</vh:ValueHelpDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	
+	<SelectDialog noDataText="No Data Found" title="Select Zone" 
+     search="handleSearchZonefilter" confirm="onSearchZonefilter" 
+	cancel="onSearchZonefilter" 
+	>
+	
+		
+		<!--<StandardListItem title="{localJson>Zzgroup}" description="{localJson>Zzgroup}" type="Active" />-->
+	</SelectDialog>
+</core:FragmentDefinition>

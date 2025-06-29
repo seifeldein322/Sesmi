@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<MessagePopover items="{localJson>/MessageSet}">
+		<MessagePopoverItem type="{localJson>type}" title="{localJson>title}" description="{localJson>description}"></MessagePopoverItem>
+	</MessagePopover>
+</core:FragmentDefinition>

@@ -1,0 +1,71 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table">
+	<t:Table rows="{localJson>/BuildingSet}"
+	 selectionBehavior="Row"
+	 selectionMode="MultiToggle"
+	selectionChange="onWBSSelectionChange" >
+		<t:columns>
+			<t:Column>
+				<t:label 	width="5rem">
+					<Label text="{i18n>Building}" 	width="5rem"/>
+				</t:label>
+				<t:template width="5rem">
+					<Text text="{localJson>BuildingNo}" />
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="{i18n>Zone}"/>
+				</t:label>
+				<t:template>
+				 <ComboBox selectedKey="{localJson>Project}" enabled="false"            
+                   items="{path: '/ValueHelpSet', 
+                    filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'BE'}]}">
+                    <items>
+                    <core:Item text="{IdText}" key="{IdNumber}"/>
+                      </items>
+                      </ComboBox>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label >
+					<Label text="{i18n>Model}" />
+				</t:label>
+				<t:template >
+					<Text text="{localJson>ModelDesc}" />
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label >
+					<Label text="{i18n>ModelID}" />
+				</t:label>
+				<t:template >
+					<Text text="{localJson>Model}" />
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="{i18n>SelectBoq}"/>
+				</t:label>
+				<t:template>
+
+                <Input showValueHelp="true" 
+                valueHelpOnly="true" 
+                value="{localJson>Group}"
+                valueHelpRequest="onDisplaySearchSubBoqDialog">
+                </Input>
+                   
+				</t:template>
+				</t:Column>
+				<t:Column>
+				<t:label >
+					<Label text="{i18n>WBS}" />
+				</t:label>
+				<t:template >
+					<Text text="{localJson>Wbs}"/>
+				</t:template>
+			</t:Column>
+		
+	
+		</t:columns>
+	</t:Table>
+</core:FragmentDefinition>

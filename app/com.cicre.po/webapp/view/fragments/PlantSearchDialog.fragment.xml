@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog noDataText="No Data Found" title="Select Plant" 
+	search="handleSearchPlant" confirm="onSelectPlantList" cancel="onSelectPlantList"
+		>
+		<StandardListItem title="{IdText}" description="{IdNumber}" type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

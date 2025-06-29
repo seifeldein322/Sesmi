@@ -1,0 +1,89 @@
+     <core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ui.table"
+	xmlns="sap.m">
+
+                              <ui:Table rows="{ path: 'localJson>/myPurchaseRequisition' }" visibleRowCount="5"
+                                    id="IdPurchaseRequisitionTable"     selectionMode="None">
+                                        <ui:toolbar>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="{i18n>PurchaseRequisition} " level="H2" />
+                                                    <Text text="({localJson>/PurchaseRequisitionNO})"></Text>
+                                                    <ToolbarSpacer />
+
+                                                </content>
+                                            </OverflowToolbar>
+                                        </ui:toolbar>
+                                        <ui:columns>
+                                            <ui:Column width="140px" autoResizable="true">
+                                                <Label text="{i18n>ContractualIndicator}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Txt}" />
+
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="180px" autoResizable="true">
+                                                <Label text="{i18n>PRNO}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>PrNo}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                                 <ui:Column width="180px" autoResizable="true">
+                                                <Label text="{i18n>Network}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Network}" />
+
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="180px" autoResizable="true">
+                                                <Label text="{i18n>Activity}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>ActivityNumber}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                            <ui:Column width="250px" autoResizable="true">
+                                                <Label text="{i18n>Description}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>BoqDesc}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="160px" autoResizable="true">
+                                                <Label text="{i18n>Status}" />
+                                                <ui:template>
+                                                    <ComboBox selectedKey="{localJson>SrvStatus}" enabled="false" items="{path: '/ValueHelpSet', 
+                                    filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'STATUSBoq'}]}">
+                                                        <items>
+                                                            <core:Item text="{IdText}" key="{IdNumber}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="60px" autoResizable="true">
+
+                                                <ui:template>
+
+                                                    <Button width="40px"
+                                                        type="{= ${localJson>DelInd} === 'X' ? 'Accept' : 'Reject'}"
+                                                        icon="{= ${localJson>DelInd} === 'X' ? 'sap-icon://undo' : 'sap-icon://delete'}"
+                                                        press="onDeletePR" />
+                                                </ui:template>
+                                            </ui:Column>
+
+
+
+                                        </ui:columns>
+
+                                    </ui:Table>
+
+            
+ </core:FragmentDefinition>

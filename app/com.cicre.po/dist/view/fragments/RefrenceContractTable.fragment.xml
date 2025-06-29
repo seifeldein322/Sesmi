@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table">
+	<t:Table rows="{localJson>/ContractPOHeaderSet}" selectionBehavior="Row" id="RefrenceContractTable">
+		<t:columns>
+			<t:Column>
+				<t:label>
+					<Label text="{i18n>Contract}" />
+				</t:label>
+				
+					<Input Value="{localJson>PurchDoc}"/>
+				
+			
+				<t:label>
+					<Label text="{i18n>ContractType}"/>
+				</t:label>
+				<t:template>
+             	<ComboBox selectedKey="{localJson>DocType}" enabled="false"
+                 items="{path: '/ValueHelpSet', 
+                 filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'DocType'}]}">
+                 <items>
+                <core:Item text="{IdText}" key="{IdNumber}"/>
+                </items>               
+                </ComboBox>
+
+				<!--<Text text="{localJson>ContractType}"/>-->
+				</t:template>
+				<t:label>
+					<Label text="{i18n>PurchOrg}"/>
+				</t:label>
+				<t:template>
+					<ComboBox selectedKey="{poModel>PurchOrg}" enabled="false"
+                    items="{path: '/ValueHelpSet', 
+                     filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'PORG'}]}">
+                     <items>
+                    <core:Item text="{IdText}" key="{IdNumber}"/>
+                    </items>             
+                  </ComboBox>
+				<!--	<Text text="{localJson>PurchOrg}"/>-->
+				</t:template>
+				<t:label>
+					<Label text="{i18n>Vendor}"/>
+				</t:label>
+				<t:template>
+					<Text text="{localJson>VendorName}"/>
+				</t:template>
+				<t:label>
+					<Label text="{i18n>Status}"/>
+				</t:label>
+				<t:template>
+					<Text text="{localJson>Status}"/>
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+</core:FragmentDefinition>

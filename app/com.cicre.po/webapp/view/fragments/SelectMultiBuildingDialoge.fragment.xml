@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:vh="sap.ui.comp.valuehelpdialog" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<vh:ValueHelpDialog ok="onSelectionChange" cancel="onBuildingContractClose" title="{i18n>Building}" 
+		supportRanges="false" supportRangesOnly="false" key="BuildingNo" class="sapUiSizeCompact">
+		<vh:filterBar>
+			<fb:FilterBar advancedMode="true" showRestoreButton="true" filtersDialogSearchForFilter="onVHContractSearch" filterBarExpanded="true"
+				search="handleSearchBuildingPress" filtersDialogSearch="onVHContractSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="Contract" name="n1" label="{i18n>Zone}">
+						<fb:control>
+							<Input id="idSearchByProject" valueHelpRequest="onDisplaySearchProjDialog" showValueHelp="true"   change="cleanProjDialog" maxLength="70"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="Contract" name="n2" label="{i18n>Model}">
+						<fb:control>
+							<Input id="idSearchByModel" showValueHelp="true"   valueHelpRequest="onDisplaySearchModel" change="cleanSearchModel" maxLength="70"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+
+					<fb:FilterGroupItem groupName="Contract" name="n5" label="{i18n>Boq}"    >
+						<fb:control>
+							<Input id="idhandboq"  change="cleanSearchMode"  enabled = "{localJson>/selectBoq}"
+							 showValueHelp="true" valueHelpRequest="onboqValueHelpPress" maxLength="70"/>
+					
+						</fb:control>
+					</fb:FilterGroupItem>
+
+					<fb:FilterGroupItem groupName="Contract" name="n3" label="{i18n>Group}">
+						<fb:control>
+							<Input id="idSearchByGroup" showValueHelp="true"  change="cleanSearGroup" valueHelpRequest="onDisplaySearGroup" maxLength="70"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="Contract" name="n4" label="{i18n>Building}">
+						<fb:control>
+							<Input id="_IdBuilding"  change="cleanSearBuilding" showValueHelp="true" valueHelpRequest="onDisplaySearBuilding" maxLength="70"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					
+					<!--	<fb:FilterGroupItem groupName="Contract" name="n6"  visible = "{localJson>/selectBoq}">
+						<fb:control>
+						
+							<Button  text="{i18n>selectBoq}"  press="onlistofPress" />
+						</fb:control>
+					</fb:FilterGroupItem>-->
+				
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</vh:filterBar>
+	</vh:ValueHelpDialog>
+</core:FragmentDefinition>

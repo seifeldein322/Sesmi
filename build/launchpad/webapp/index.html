@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title> Application Overview </title>
+    <script src="https://ui5.sap.com/1.129.2/resources/sap-ui-core.js" 
+            id="sap-ui-bootstrap"
+            data-sap-ui-theme="sap_horizon"
+            data-sap-ui-bindingSyntax="complex" 
+            data-sap-ui-xx-bindingSyntax="complex"
+            data-sap-ui-resourceroots='{"assets": "assets"}' 
+            data-sap-ui-libs="sap.m,sap.uxap,sap.ui.layout,sap.f">
+    </script>
+    <link rel="stylesheet" href="assets/preview.css">
+</head>
+
+<body id="body" class="sapUiBody">
+    <script>
+        "use strict";
+        sap.ui.localResources("assets");
+        (function (jQuery, App, Page) {
+            sap.ui.getCore().attachInit(function () {
+                sap.ui.define([
+                    "sap/ui/core/mvc/Controller",
+                    "sap/ui/model/json/JSONModel"
+                ], function (Controller, JSONModel) {
+                    return Controller.extend("PreviewController", {
+                        onInit: function () {
+
+                            const data = {"Services":[{"ServiceName":"CatalogService","DetailsURL":"./odata/v4/catalog/","Metadata":"./odata/v4/catalog/$metadata","Entities":[{"Name":"HeaderSet","URL":"./odata/v4/catalog/HeaderSet","FioriURL":""},{"Name":"ValueHelpSet","URL":"./odata/v4/catalog/ValueHelpSet","FioriURL":""},{"Name":"ContractPONoteSet","URL":"./odata/v4/catalog/ContractPONoteSet","FioriURL":""},{"Name":"PCContratualSet","URL":"./odata/v4/catalog/PCContratualSet","FioriURL":""},{"Name":"BoqHeaderSet","URL":"./odata/v4/catalog/BoqHeaderSet","FioriURL":""},{"Name":"BoqSubItemSet","URL":"./odata/v4/catalog/BoqSubItemSet","FioriURL":""},{"Name":"BoqMatGrpSet","URL":"./odata/v4/catalog/BoqMatGrpSet","FioriURL":""},{"Name":"BoqItemSet","URL":"./odata/v4/catalog/BoqItemSet","FioriURL":""},{"Name":"WFContractInboxSet","URL":"./odata/v4/catalog/WFContractInboxSet","FioriURL":""},{"Name":"PermissionSet","URL":"./odata/v4/catalog/PermissionSet","FioriURL":""},{"Name":"ReleaseErrorSet","URL":"./odata/v4/catalog/ReleaseErrorSet","FioriURL":""},{"Name":"POBuildingSet","URL":"./odata/v4/catalog/POBuildingSet","FioriURL":""},{"Name":"OrderHeaderSet","URL":"./odata/v4/catalog/OrderHeaderSet","FioriURL":""},{"Name":"AttachmentSet","URL":"./odata/v4/catalog/AttachmentSet","FioriURL":""},{"Name":"ContractPOItemSet","URL":"./odata/v4/catalog/ContractPOItemSet","FioriURL":""},{"Name":"BoqTreeSet","URL":"./odata/v4/catalog/BoqTreeSet","FioriURL":""},{"Name":"BuildingSet","URL":"./odata/v4/catalog/BuildingSet","FioriURL":""},{"Name":"ContractPOSrvItemSet","URL":"./odata/v4/catalog/ContractPOSrvItemSet","FioriURL":""},{"Name":"ContractPOHeaderSet","URL":"./odata/v4/catalog/ContractPOHeaderSet","FioriURL":""}],"EntitiesCount":19}]}
+                            this.getView().setModel(new JSONModel(data));
+                        }
+                    });
+                });
+                var oApp = new App()
+                var previewView = sap.ui.view({
+                    viewName: "assets.Preview",
+                    type: sap.ui.core.mvc.ViewType.XML
+                });
+                oApp.addPage(new Page({
+                    content: [previewView],
+                    showHeader: false
+                })).placeAt("content");
+            });
+
+        }(jQuery, sap.m.App, sap.m.Page));
+    </script>
+    <div id="content"></div>
+</body>
+
+</html>

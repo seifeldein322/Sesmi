@@ -1,0 +1,1492 @@
+<mvc:View controllerName="com.cicre.po.controller.CreateContract" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout"
+    xmlns:layout="sap.ui.layout" core:require="{ formatMessage: 'sap/base/strings/formatMessage' }">
+
+    <Page title="{i18n>Contract}" showNavButton="true" navButtonPress="onNavBack" class="sapUiSizeCompact">
+        <content>
+            <uxap:ObjectPageLayout>
+                <uxap:headerTitle>
+                    <uxap:ObjectPageHeader objectSubtitle="{i18n>Header Display}" objectTitle="{i18n>Display}">
+                    </uxap:ObjectPageHeader>
+                </uxap:headerTitle>
+                <uxap:headerContent>
+                    <FlexBox wrap="Wrap" fitContainer="true">
+                        <layout:HorizontalLayout>
+                            <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                                <ObjectAttribute title="{i18n>DocumentID}" text=" " />
+                                <ObjectAttribute title="{i18n>CompanyCode}" text="{localJson>/projectText}" />
+                                <ObjectAttribute title="{i18n>Estimated Status}" text=""  visible="false" />
+                                <ObjectAttribute title="{i18n>Original Status}" text="" />
+                    
+
+                            </layout:VerticalLayout>
+
+                            <layout:VerticalLayout class="sapUiSmallMarginBeginEnd" visible="false" > 
+                                <Label text="{i18n>EstimatedContractValue}" />
+
+                                <ObjectNumber
+                                    number="{ parts:[{path:'localJson>/EstimatedContractValue'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                    state="Success"
+                                    unit="{localJson>/Currency}" />
+                            </layout:VerticalLayout>
+
+                            <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                                <Label text="{i18n>OriginalContractValue}" />
+                                <ObjectNumber
+                                    number="{ parts:[{path:'localJson>/OriginalContractValue'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                    state="Success" 
+                                    unit="{localJson>/Currency}"/>
+
+                            </layout:VerticalLayout>
+                            <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                                <Label text="{i18n>VariationOrderValue}" />
+                                <ObjectNumber
+                                    number="{ parts:[{path:'localJson>/VariationOrderValue'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                    emphasized="true" state="Success" 
+                                    unit="{localJson>/Currency}"/>
+                            </layout:VerticalLayout>
+                            <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                                <Label text="{i18n>AddendumValue}" />
+                                <ObjectNumber state="Success"
+                                
+                                    number="{ parts:[{path:'localJson>/AddendumValue'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                    unit="{localJson>/Currency}" />
+                            </layout:VerticalLayout>
+
+                                 <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                            <Label text="{i18n>RevisedContractValue}" />
+                            <ObjectNumber
+                                number="{ parts:[{path:'localJson>/RevisedContractValue'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                state="Success" unit="{localJson>/Currency}" />
+                        </layout:VerticalLayout>
+
+                            <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                                <Label text="{i18n>TotalContractValue}" />
+                                <ObjectNumber
+                                    number="{ parts:[{path:'localJson>/TotalContractValue'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                    state="Success" 
+                                    unit="{localJson>/Currency}"/>
+
+                              <!--  <Label text="{i18n>RevisedContractValue}" />
+                                <ObjectNumber state="Success"
+                                    number="{path : 'localJson>/RevisedContractValue', formatter : 'com.cicre.po.model.formatter.NumberWithCommas'}"
+                                    unit="{localJson>/Currency}" /> -->
+
+                            </layout:VerticalLayout>
+                        </layout:HorizontalLayout>
+                    </FlexBox>
+                </uxap:headerContent>
+                <uxap:sections>
+                <uxap:ObjectPageSection title="{i18n>HeaderMiantenance}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="{i18n>HeaderMiantenance}">
+                                <uxap:blocks>
+                                    <f:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+                                        labelSpanM="4" labelSpanS="4" columnsXL="2" columnsL="2" columnsM="2"
+                                        class="editableForm">
+                                        <f:toolbar>
+                                            <Toolbar>
+
+                                                <Title text="{i18n>HeaderMaintenance}" />
+                                                <ToolbarSpacer />
+                                            </Toolbar>
+                                        </f:toolbar>
+                                        <f:content>
+                                            <core:Title />
+
+                                            <Label text="{i18n>CompanyCode}" class="sapUiTinyMarginTop"
+                                                />
+                                            <Input id="idCompanyCode" showValueHelp="true" valueHelpOnly="false"
+                                                valueHelpRequest="onDisplaySearchCompDialog"
+                                                change="onSearchCompanyChange" >
+                                            </Input>
+
+                                            <Label text="{i18n>PurchaseOrganization}" class="sapUiTinyMarginTop"
+                                                visible="false" />
+                                            <Input id="idPurchaseOrganization" showValueHelp="true"
+                                                valueHelpOnly="false" valueHelpRequest="onDisplaySearchPOrgDialog"
+                                                change="onSearchPOrgChange" visible="false">
+                                            </Input>
+                                            <Label text="{i18n>PurchaseGroup}" class="sapUiTinyMarginTop"
+                                                visible="false" />
+                                            <Input id="idPurchaseGroup" showValueHelp="true" visible="false"
+                                                valueHelpOnly="false" valueHelpRequest="onDisplaySearchPGrpDialog"
+                                                change="onSearchPGrpChange">
+                                            </Input>
+
+                                            <Label text="{i18n>Plant}" class="sapUiTinyMarginTop" visible="false" />
+                                            <Input id="idPlant" showValueHelp="true" valueHelpOnly="false"
+                                                valueHelpRequest="onDisplaySearchPlantDialog"
+                                                change="onSearchPlantChange" visible="false">
+
+                                            </Input>
+
+
+                                            <Label text="{i18n>Project}" class="sapUiTinyMarginTop" />
+                                            <Input id="_idSearchByProject" showValueHelp="true" valueHelpOnly="false"
+                                                valueHelpRequest="onDisplaySearchProjectDialog">
+                                            </Input>
+
+                                            <Label text="{i18n>ContractDescription}" class="sapUiTinyMarginTop" />
+                                            <TextArea id="idContractDescription" maxLength="40" />
+
+                                            <Label text="{i18n>LongDescription}" class="sapUiTinyMarginTop" />
+                                            <TextArea id="idLongDescription" maxLength="300" />
+
+                                            <Label text="{i18n>Vendor}" class="sapUiTinyMarginTop" />
+                                            <Input id="idVendor" showValueHelp="true" valueHelpOnly="false"
+                                                valueHelpRequest="onDisplaySearchVendorDialog">
+                                            </Input>
+
+                                            <Label text="{i18n>Currency}" class="sapUiTinyMarginTop" />
+                                            <Input id="idCurrency" change="onchangeCurrency" >
+                                            </Input>
+
+
+                                            <Label text="{i18n>ContractType}" class="sapUiTinyMarginTop" />
+                                            <Input id="_idSdocumenttype" showValueHelp="true" valueHelpOnly="false"
+                                                valueHelpRequest="onDisplayDocType">
+                                            </Input>
+
+                                            <Label text="{i18n>ContractType}" class="sapUiTinyMarginTop" />
+                                            <Input id="idDocType" showValueHelp="true" valueHelpOnly="false"
+                                                visible="false" valueHelpRequest="onDisplaySearchDocTypeDialog">
+
+                                            </Input>
+                                            <Label text="{i18n>MeasurementMethod}" class="sapUiTinyMarginTop" />
+                                            <ComboBox id="idMeasurementMethod" change="changeContractType" items="{path: '/ValueHelpSet', 
+                                        filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'MeasMethod'}]}">
+                                                <items>
+                                                    <core:Item text="{IdText}" key="{IdNumber}" />
+                                                </items>
+                                            </ComboBox>
+
+                                            <Label text="{i18n>ConstructionType}" class="sapUiTinyMarginTop" />
+                                            <ComboBox id="idConstructionType" items="{path: 'localJson>/ConstTypeSet'}">
+                                                <items>
+                                                    <core:Item text="{localJson>IdText}" key="{localJson>IdNumber}" />
+                                                </items>
+                                            </ComboBox>
+
+                                            <!--<Label text="{i18n>RefrenceContract}" class="sapUiTinyMarginTop"/>
+							<Input id="idRefrenceContract" showValueHelp="true" valueHelpOnly="false" 
+							valueHelpRequest="onDisplaySearchRefrenceContractDialog"
+							>
+							</Input>-->
+                                         
+
+                                            <core:Title />
+                                            <Label text="{i18n>CreationDate}" class="sapUiTinyMarginTop" />
+                                            <DatePicker id="idDocumentDate" displayFormat="yyyy-MM-dd"
+                                                valueFormat="yyyy-MM-dd" />
+
+
+                                            <Label text="{i18n>SignOffDate}" class="sapUiTinyMarginTop" />
+                                            <DatePicker id="idDeliveryDate" displayFormat="yyyy-MM-dd"
+                                                valueFormat="yyyy-MM-dd" />
+
+                                            <Label text="{i18n>ValidFrom}" class="sapUiTinyMarginTop" />
+                                            <DatePicker id="idValidFromDate" displayFormat="yyyy-MM-dd"
+                                                valueFormat="yyyy-MM-dd" />
+
+                                            <Label text="{i18n>ValidTo}" class="sapUiTinyMarginTop" />
+                                            <DatePicker id="idValidToDate" displayFormat="yyyy-MM-dd"
+                                                valueFormat="yyyy-MM-dd" />
+
+                                            <Label text="{i18n>RevisedValidTo}" class="sapUiTinyMarginTop" />
+                                            <DatePicker id="idRevisedValidToDate" displayFormat="yyyy-MM-dd"
+                                                valueFormat="yyyy-MM-dd" />
+
+                                            <Label text="{i18n>IndexMonth}" class="sapUiTinyMarginTop" />
+
+
+
+                                            <MultiComboBox id="idIndexMonth" items="{localJson>/IndexMonths}">
+                                                <items>
+                                                    <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                </items>
+                                            </MultiComboBox>
+
+
+
+                                            <Label text="{i18n>Consultant}" class="sapUiTinyMarginTop"
+                                                visible="false" />
+                                            <Input id="idConsultant" showValueHelp="true" valueHelpOnly="false"
+                                                valueHelpRequest="onDisplaySearchVendorDialog" visible="false">
+                                            </Input>
+                                            
+                                                                                        <Label text="{i18n>RefrenceContract}" class="sapUiTinyMarginTop" />
+                                            <Input id="idRefrenceContract" enabled="{localJson>/editMode}"
+                                                showValueHelp="true" valueHelpOnly="false"
+                                                value="{localJson>/RefContract}"
+                                                valueHelpRequest="onContractValueHelpPress"></Input>
+                                            <!--service type-->
+                                            <Label text="{i18n>serviceType}" class="sapUiTinyMarginTop" />
+                                            <Input id="idserviceType" enabled="{localJson>/editMode}"
+                                                showValueHelp="true" valueHelpOnly="false"
+                                                valueHelpRequest="onserviceTypeValueHelpPress"></Input>
+                                                
+
+                                            <Label text="{i18n>ResponsiblepersonSS}" visible="false" class="sapUiTinyMarginTop" />
+                                            <ComboBox id="idResponsiblepersonSS" visible="false"  showSecondaryValues="true" items="{path: '/ValueHelpSet', 
+                                        filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'PerSS'}]}">
+                                                <items>
+                                                    <core:ListItem key="{IdNumber}" text="{IdText}"
+                                                        additionalText="{IdNumber}" />
+                                                </items>
+                                            </ComboBox>
+
+                                            <Label text="{i18n>ResponsiblepersonIR}" visible="false" class="sapUiTinyMarginTop" />
+                                            <ComboBox id="idResponsiblepersonIR" visible="false"  showSecondaryValues="true" items="{path: '/ValueHelpSet', 
+                                        filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'PerIR'}]}">
+                                                <items>
+                                                    <core:ListItem key="{IdNumber}" text="{IdText}"
+                                                        additionalText="{IdNumber}" />
+                                                </items>
+
+
+                                            </ComboBox>
+
+                                            <Label text="{i18n>CreationType}"  visible="false" class="sapUiTinyMarginTop" />
+                                           <Select id="idCreationType"   visible="false" change="changeCreationType" items="{path: '/ValueHelpSet', 
+                                        filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'CreationType'}]}">
+                                                <items>
+                                                    <core:Item text="{IdText}" key="{IdNumber}" />
+                                                </items>
+                                            </Select>
+                                         <!--    <Select id="idCreationType" items="{localJson>/CreationType}" 
+                                                                  change="changeCreationType">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </Select>-->
+
+                                            <Label text="{i18n>SupeiorWBS}" class="sapUiTinyMarginTop" />
+                                            <Input id="idSupeiorWBS"
+                                                valueHelpRequest="onDisplaySearchidSupeiorWBSDialog"
+                                                showValueHelp="true" valueHelpOnly="false"
+                                                enabled="{= ${localJson>/editMode} === false ? false : true  }"></Input>
+                                            <!--enabled="{= ${localJson>/editMode} === false ? false :  ${localJson>/estimatedMode} === true ? true : false }"-->
+                                           <Label text="{i18n>المساحة التعاقدية}" class="sapUiTinyMarginTop" visible="false" />
+                                           <Input id="idContractualSpace"  	maxlength="12" type="Number" visible="false" />
+                                          
+                                            <Label text="{i18n>Tolerance}" class="sapUiTinyMarginTop" />
+                                            <Input id="idTolerance" visible="false" change="onChangeTolerance" />
+
+                                            <Label text="{i18n>MarkUp%}" class="sapUiTinyMarginTop" />
+                                            <Input id="idMarkUp" visible="false" />
+
+                                        </f:content>
+                                    </f:SimpleForm>
+
+
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                    <uxap:ObjectPageSection title="{i18n>EstimatedServices}" visible="false">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="{i18n>EstimatedServices}">
+                                <uxap:blocks>
+
+                                    <ui:Table id="idEstimatedServicesTable"
+                                        rows="{ path: 'localJson>/EstimatedContracts' }" visibleRowCount="5"
+                                        selectionMode="None">
+                                        <ui:toolbar>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="{i18n>EstimatedServices}" level="H2" />
+                                                    <ToolbarSpacer />
+                                                    <Button type="Accept" icon="sap-icon://add"
+                                                        press="handleAddEstimatedContract"
+                                                        enabled="{= ${localJson>/editMode} === false ? false :  ${localJson>/estimatedMode} === true ? true : false }" />
+                                                </content>
+                                            </OverflowToolbar>
+                                        </ui:toolbar>
+                                        <ui:columns>
+                                            <ui:Column width="880px" autoResizable="true">
+                                                <Label text="{i18n>Servicedesc}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Servicedesc}" maxLength="40"
+                                                        placeholder="Enter estimated description ....."
+                                                        enabled="{= ${localJson>/editMode} === false ? false :  ${localJson>/estimatedMode} === true ? true : false }" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="220px" autoResizable="true">
+                                                <Label text="{i18n>Amount}" />
+                                                <ui:template>
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>Amount'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        change="onChangeAmount"
+                                                        enabled="{= ${localJson>/editMode} === false ? false :  ${localJson>/estimatedMode} === true ? true : false }" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="70px" autoResizable="true">
+                                                <ui:template>
+                                                    <Button type="Reject" icon="sap-icon://sys-cancel"
+                                                        press="deleteEstimatedContract"
+                                                        enabled="{= ${localJson>/editMode} === false ? false : ${localJson>/estimatedMode} === true ? true : false }" />
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+
+                                    </ui:Table>
+
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                    <uxap:ObjectPageSection title="{i18n>Consolidated}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <Panel>
+                                    <ui:Table id="idBuildingsBtn" selectionMode="None"
+                                        rows="{ path: 'localJson>/BoqConsulidatedItemSet' }"
+                                        visible="{= !${localJso>/ViewCon1}}" visibleRowCount="7"
+                                        alternateRowColors="true">
+                                        <ui:extension>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="{i18n>ConsolidatedServices}" level="H2" />
+                                                    <Text text="({localJson>/ServicNOCount})"></Text>
+                                                    <ToolbarSpacer />
+                                                    <Button type="Accept" icon="sap-icon://add"
+                                                        press="handleOpenActionSheet1"
+                                                        enabled="{= ${localJson>/estimatedMode} === false ? true : false}" />
+                                                    <Button type="Accept" icon="sap-icon://detail-view"
+                                                        press="handleOpenViewSheet" id="ViewBtn" />
+                                                </content>
+                                            </OverflowToolbar>
+                                        </ui:extension>
+                                        <ui:columns>
+                                            <ui:Column width="120px" autoResizable="true">
+                                                <Label text="{i18n>Contractual}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Txt}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="180px" autoResizable="true">
+                                                <Label text="{i18n>Servicetype}" />
+                                                <ui:template>
+                                                    <ComboBox items="{localJson>/Service_TYPE}" enabled="false"
+                                                        visible="{= !!${localJson>Eancat}}"
+                                                        selectedKey="{localJson>Eancat}" change="hanleChane">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="110px" autoResizable="true">
+                                                <Label text="{i18n>Service}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Data}" enabled="false" />
+
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="500px" autoResizable="true">
+                                                <Label text="{i18n>ServiceDescription}" />
+                                                <ui:template>
+                                                    <!--   <Input value="{localJson>ShortDesc}" enabled="false"/>-->
+                                                    <TextArea value="{localJson>LongDesc}" enabled="false"
+                                                        width="100%" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="70px" autoResizable="true">
+                                                <Label text="{i18n>UOM}" />
+                                                <ui:template>
+                                                    <!--<Input value="{localJson>Uom}" enabled="false" />-->
+                                                    <Input   value="{localJson>Uom}" 
+                                                             visible="{= !!${localJson>Eancat}}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="100px" autoResizable="true">
+                                                <Label text="{i18n>Quantity}" />
+                                                <ui:template>
+                                                     <Input   
+                                                      value="{localJson>Qty}"  
+                                                      visible="{= !!${localJson>Eancat}}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Price}" />
+                                                <ui:template>
+                                                <!--value="{ parts:['localJson>PriceUnit' ,'localJson>/Currency' , 'localJson>Eancat' ], formatter: 'com.cicre.po.model.formatter.roundTotalDecimal'}"
+                                                     value="{ parts:[{path:'localJson>PriceUnit'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"-->
+                                                    <Input
+                                                         value="{ parts:[{path:'localJson>PriceUnit'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        maxLength="11" change="onPriceConsolidatedChange"
+                                                         visible="{= !!${localJson>Eancat}}"
+                                                        enabled="{= ${localJson>/editMode} === false ? false :  ${localJson>/estimatedMode} === true ? false : ${localJson>Eancat} === '' ? false : true }" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                          <ui:Column width="150px" autoResizable="true" visible="false">
+                                                <Label text="{i18n>ProvisionRate}" />
+                                                <ui:template>
+                                                    <Input type="Number"
+                                                        value="{localJson>ProvisionRate}"
+                                                         visible="{= !!${localJson>Eancat}}"
+                                                        enabled="{= ${localJson>/editMode} === false ? false :  ${localJson>/estimatedMode} === true ? false : ${localJson>Eancat} === '' ? false : true }" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            
+                                            <ui:Column width="200px" autoResizable="true">
+                                                <Label text="{i18n>Amount}" />
+                                                <!--value="{ parts:['localJson>Amount' ,'localJson>/Currency' , 'localJson>Eancat' ], formatter: 'com.cicre.po.model.formatter.roundTotalDecimal'}" 
+                                                     value="{ parts:[{path:'localJson>Amount'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"-->
+                                                <ui:template>
+                                                    <Input
+                                                    value="{ parts:[{path:'localJson>Amount'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"                                                      
+                                                        enabled="false"
+                                                        
+                                                        visible="{= ${localJson>Eancat} === 'U' ? false : !!${localJson>Eancat}}" />
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:Table>
+
+                                    <Table id="idConsuliatedTable" inset="false" visible="false" growing="true" items="{ path: 'localJson>/BuildingConsulidatedItemSet', length: 2000000,
+									 sorter : {
+                                     path : 'sortNum' }
+                                                 }">
+                                        <headerToolbar>
+                                            <Toolbar>
+                                                <ToolbarSpacer></ToolbarSpacer>
+
+                                                <Button tooltip="{i18n>displayViewFilterOptions}" type="Emphasized"
+                                                    icon="sap-icon://filter" press="onFilterServices" />
+                                                <Button type="Accept" icon="sap-icon://detail-view"
+                                                    press="handleOpenViewSheet" id="ViewBt" />
+
+                                            </Toolbar>
+                                        </headerToolbar>
+
+                                        <columns>
+                                            <Column width="100px">
+                                                <Text text="{i18n>Contractual}" />
+                                            </Column>
+                                            <Column width="150px">
+                                                <Text text="{i18n>Service type}" />
+                                            </Column>
+                                            <Column width="80px">
+                                                <Text text="{i18n>Service}" />
+                                            </Column>
+                                            <Column width="200px">
+                                                <Text text="{i18n>ShortText}" />
+                                            </Column>
+                                            <Column width="100px">
+                                                <Text text="{i18n>Building}" />
+                                            </Column>
+                                            <Column hAlign="Center" width="60px">
+                                                <Text text="{i18n>UOM}" />
+                                            </Column>
+                                            <Column hAlign="Center" width="80px">
+                                                <Text text="{i18n>Quantity}" />
+                                            </Column>
+                                            <Column hAlign="Center" width="80px">
+                                                <Text text="{i18n>Price}" />
+                                            </Column>
+
+                                            <Column hAlign="Center" width="80px">
+                                                <Text text="{i18n>Amount}" />
+                                            </Column>
+
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Input value="{localJson>Txt}" width="80px" enabled="false" />
+
+
+                                                    <ComboBox items="{localJson>/Service_TYPE}" enabled="false"
+                                                        selectedKey="{localJson>Eancat}" change="hanleChane">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </ComboBox>
+
+                                                    <Input value="{localJson>Data}" width="80px" enabled="false" />
+                                                    <!--<Input value="{localJson>ShortDesc}" width="200px" enabled="false"/>-->
+                                                    <TextArea value="{localJson>LongDesc}" enabled="false"
+                                                        width="100%" />
+                                                    <Input value="{localJson>Buildingno}" width="100px"
+                                                        enabled="false" />
+                                                    <Input value="{localJson>Uom}" width="60px" enabled="false" />
+
+                                                    <Input value="{localJson>Qty}" width="80px" enabled="false" />
+                                                    <Input value="{localJson>PriceUnit}" width="80px"
+                                                        change="onPriceConsolidatedChange" enabled="false" />
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>Amount'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        enabled="false"
+                                                        visible="{= ${localJson>Eancat} === 'U' ? false : true}" />
+
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+    
+                                    <ui:Table selectionMode="None" rows="{ path: 'localJson>/forBBuildingConsulidatedItemSet',
+									 sorter : {
+                                     path : 'sortNum' }}" visible="{= ${localJso>/ViewCon2} === true ? false : true}"
+                                        visibleRowCount="8" alternateRowColors="true">
+                                        <ui:extension>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="{i18n>ConsolidatedServices}" level="H2" />
+                                                    <ToolbarSpacer />
+                                                    <Button tooltip="{i18n>displayViewFilterOptions}"
+                                                        id="forBBuildingConsulidatedItemSet" type="Emphasized"
+                                                        icon="sap-icon://filter" press="onFilterServices" />
+                                                    <Button type="Accept" icon="sap-icon://detail-view"
+                                                        press="handleOpenViewSheet" id="ViewBttt" />
+                                                </content>
+                                            </OverflowToolbar>
+                                        </ui:extension>
+                                        <ui:columns>
+                                            <ui:Column width="100px" autoResizable="true">
+                                                <Label text="{i18n>Contractual}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Txt}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Servicetype}" />
+                                                <ui:template>
+                                                    <ComboBox items="{localJson>/Service_TYPE}" enabled="false"
+                                                        selectedKey="{localJson>Eancat}" 
+                                                        visible="{= !!${localJson>Eancat}}" change="hanleChane">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="100px" autoResizable="true">
+                                                <Label text="{i18n>Service}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Data}" enabled="false" />
+
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="500px" autoResizable="true">
+                                                <Label text="{i18n>ServiceDescription}" />
+                                                <ui:template>
+                                                    <!--<Input value="{localJson>ShortDesc}" enabled="false"/>-->
+                                                    <TextArea value="{localJson>LongDesc}" enabled="false"
+                                                        width="100%" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="65px" autoResizable="true">
+                                                <Label text="{i18n>Buildingno}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Buildingno}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="65px" autoResizable="true">
+                                                <Label text="{i18n>UOM}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Uom}" visible="{= !!${localJson>Eancat}}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="100px" autoResizable="true">
+                                                <Label text="{i18n>Quantity}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Qty}" visible="{= !!${localJson>Eancat}}" enabled="false" />
+                                                 <!--  <Input  value="{ parts:['localJson>Qty','localJson>Eancat'], formatter: 'com.cicre.po.model.formatter.FormatForsrviceType'}" enabled="false" />-->
+
+                     
+                                                   
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="100px" autoResizable="true">
+                                                <Label text="{i18n>Price}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>PriceUnit}" width="80px"
+                                                        change="onPriceConsolidatedChange"
+                                                        visible="{= !!${localJson>Eancat}}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Amount}" />
+                                                <ui:template>
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>Amount'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        enabled="false"
+                                                        visible="{= ${localJson>Eancat} === 'U' ? false : !!${localJson>Eancat}}" />
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:Table>
+                                    <ui:Table selectionMode="None" rows="{ path: 'localJson>/ServiceGroupSet',
+									 sorter : {
+                                     path : 'sortNum' } }" visible="{= ${localJso>/ViewCon3} === true ? false : true}"
+                                        visibleRowCount="10" alternateRowColors="true">
+                                        <ui:extension>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="{i18n>ConsolidatedServices}" level="H2" />
+                                                    <ToolbarSpacer />
+                                                    <Button tooltip="{i18n>displayViewFilterOptions}" type="Emphasized"
+                                                        icon="sap-icon://filter" press="onFilterServices" />
+                                                    <Button type="Accept" icon="sap-icon://detail-view"
+                                                        press="handleOpenViewSheet" id="ViewBt3" />
+                                                </content>
+                                            </OverflowToolbar>
+                                        </ui:extension>
+                                        <ui:columns>
+                                            <ui:Column width="180px" autoResizable="true">
+                                                <Label text="{i18n>Contractual}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Txt}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="180px" autoResizable="true">
+                                                <Label text="{i18n>ServiceGroup}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>MatlGroup}" enabled="false" />
+
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="380px" autoResizable="true">
+                                                <Label text="{i18n>GroupText}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Matdesc}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="160px" autoResizable="true">
+                                                <Label text="{i18n>NoofBuilding}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Buildingnum}" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="240px" autoResizable="true">
+                                                <Label text="{i18n>Amount}" />
+                                                <ui:template>
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>Amount'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                        </ui:columns>
+                                    </ui:Table>
+
+
+
+                                </Panel>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <uxap:ObjectPageSection title="{i18n>BoQs}" visible="{= ${localJson>/BoqItemSet}.length > 0}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="{i18n>BoQs}">
+                                <uxap:blocks>
+                                    <ui:TreeTable id="TreeTableBasic"
+                                        rows="{path:'localJson>/BoqItemSet', parameters: {arrayNames:['Categories']}}"
+                                        selectionMode="Single" enableSelectAll="false" ariaLabelledBy="title"
+                                        visibleRowCount="9">
+                                        <ui:extension>
+                                            <OverflowToolbar>
+
+                                                <ToolbarSpacer />
+                                                <Button text="Collapse all" press="onCollapseAll" />
+                                                <Button text="Expand all" press="onExpandFirstLevel" />
+                                            </OverflowToolbar>
+                                        </ui:extension>
+                                        <ui:columns>
+                                            <ui:Column width="12rem">
+                                                <Label text="Services" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Data}" wrapping="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="11rem">
+                                                <Label text="Service type" />
+                                                <ui:template>
+                                 
+                                                    <ComboBox items="{localJson>/Service_TYPE}" enabled="false"
+                                                        visible="{= !!${localJson>Eancat}}"
+                                                        selectedKey="{localJson>Eancat}" change="hanleChane">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                            <ui:Column width="30rem">
+                                                <Label text="Service Description" />
+                                                <ui:template>
+                                                    <!--<Text text="{localJson>LongDesc}}" wrapping="false" />-->
+                                                    <TextArea value="{localJson>LongDesc}" enabled="false" rows="{  parts: 
+							[
+							{path: 'localJson>Indicator'}						
+							] 
+							, formatter: 'com.cicre.po.model.formatter.numOfRows'}" wrapping="false" width="100%"
+                                                        visible="{= !!${localJson>LongDesc}}" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <!-- <ui:Column width="4rem">
+                        <Label text="Long Text"/>
+                        <ui:template>
+							<Button icon="sap-icon://attachment-text-file" size="1rem" press="onPressLongText" color="#1C4C98"
+												visible="{= !!${localJson>LongDesc}}" 
+												tooltip="{i18n>LongText}"/>
+												 </ui:template>
+                    </ui:Column>-->
+                                            <ui:Column width="5rem">
+                                                <Label text="UOM" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Uom}" wrapping="false"
+                                                        visible="{= !!${localJson>Uom}}" enabled="false" />
+
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                            <ui:Column width="9rem">
+                                                <Label text="Quantity" />
+                                                <ui:template>
+                                                    <Input value="{localJson>Qty}" wrapping="false" type="Number"
+                                                        visible="{= !!${localJson>Qty} === false ? false : ${localJson>Eancat} === 'U' ? false : true }"
+                                                        liveChange="onChangeQty" enabled="false" />
+                                                    <!---->
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="5rem">
+                                                <Label text="Price" />
+                                                <ui:template>
+                                                    <Input value="{localJson>price}" wrapping="false"
+                                                        visible="{= !!${localJson>price}}" enabled="false" />
+
+                                                </ui:template>
+                                            </ui:Column>
+                                 
+                                            <ui:Column width="8rem">
+                                                <Label text="Amount" />
+
+                                                <ui:template>
+
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>PriceUnit'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        wrapping="false"
+                                                        visible="{= !!${localJson>PriceUnit} === false ? false : ${localJson>Eancat} === 'U' ? false :  ${localJson>live} === 'one' ? false : true  }"
+                                                        enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:TreeTable>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+<!---->
+                    <uxap:ObjectPageSection title="{i18n>PurchaseRequisition}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="{i18n>PurchaseRequisition}">
+                                <uxap:blocks>
+
+                                    <core:Fragment fragmentName="com.cicre.po.view.PRfragments.TreePurchaseRequisition" type="XML"  />
+                         
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <uxap:ObjectPageSection title="{i18n>BuildingBOQList}"  visible="{= ${localJson>/myBuildingSet}.length > 0}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="{i18n>BuildingBOQList}">
+                                <uxap:blocks>
+                                    <ui:Table id="IdBuildingTable" rows="{ path: 'localJson>/myBuildingSet',
+									 sorter : {
+                                     path : 'sortNum' }
+                                                 }" visibleRowCount="5" selectionMode="None">
+                                        <ui:toolbar>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="{i18n>BuildingBOQList} " level="H2" />
+                                                    <Text text="({localJson>/BuildingNO})" level="H2"></Text>
+                                                    <ToolbarSpacer />
+
+                                                </content>
+                                            </OverflowToolbar>
+                                        </ui:toolbar>
+                                        <ui:columns>
+                                            <ui:Column width="100px" autoResizable="true">
+                                                <Label text="{i18n>Contractual Indicator}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Txt}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="105px" autoResizable="true">
+                                                <Label text="{i18n>Building}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>BuildingNo}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="107px" autoResizable="true">
+                                                <Label text="{i18n>Zone}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Project}"></Text>
+
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="70px" autoResizable="true">
+                                                <Label text="{i18n>Group}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Zzgroup}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="70px" autoResizable="true">
+                                                <Label text="{i18n>Model}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Model}"></Text>
+
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Description}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>ModelDesc}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="70px" autoResizable="true">
+                                                <Label text="{i18n>Boq}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Group}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                            <ui:Column width="250px" autoResizable="true">
+                                                <Label text="{i18n>Description}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>BoqDesc}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="170px" autoResizable="true">
+                                                <Label text="{i18n>Status}" />
+                                                <ui:template>
+                                                    <ComboBox selectedKey="{localJson>SrvStatus}" enabled="false" items="{path: '/ValueHelpSet', 
+                                    filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'STATUSBoq'}]}">
+                                                        <items>
+                                                            <core:Item text="{IdText}" key="{IdNumber}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="60px" autoResizable="true">
+
+                                                <ui:template>
+                                                    <Button width="40px"
+                                                        type="{= ${localJson>DelInd} === 'X' ? 'Accept' : 'Reject'}"
+                                                        icon="{= ${localJson>DelInd} === 'X' ? 'sap-icon://undo' : 'sap-icon://delete'}"
+                                                        press="onDeleteBuilding" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                        </ui:columns>
+
+                                    </ui:Table>
+
+
+                                    <ui:Table id="IdBuildingTable_copy" rows="{ path: 'localJson>/copymyBuildingSet',
+									 sorter : {
+                                     path : 'sortNum' }
+                                                 }" visibleRowCount="5" selectionMode="None" visible="false">
+                                        <ui:toolbar>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="{i18n>BuildingBOQList} " level="H2" />
+                                                    <Text text="({localJson>/BuildingNO})"></Text>
+                                                    <ToolbarSpacer />
+
+                                                </content>
+                                            </OverflowToolbar>
+                                        </ui:toolbar>
+                                        <ui:columns>
+                                            <ui:Column width="100px" autoResizable="true">
+                                                <Label text="{i18n>Contractual Indicator}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Txt}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="105px" autoResizable="true">
+                                                <Label text="{i18n>Building}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>BuildingNo}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="107px" autoResizable="true">
+                                                <Label text="{i18n>Zone}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Project}"></Text>
+
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="70px" autoResizable="true">
+                                                <Label text="{i18n>Group}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Zzgroup}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="70px" autoResizable="true">
+                                                <Label text="{i18n>Model}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Model}"></Text>
+
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Description}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>ModelDesc}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="70px" autoResizable="true">
+                                                <Label text="{i18n>Boq}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Group}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                            <ui:Column width="250px" autoResizable="true">
+                                                <Label text="{i18n>Description}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>BoqDesc}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="170px" autoResizable="true">
+                                                <Label text="{i18n>Status}" />
+                                                <ui:template>
+                                                    <ComboBox items="{localJson>/STATUSBoqlist}" enabled="false"
+                                                        selectedKey="{localJson>SrvStatus}" change="hanleChane">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="60px" autoResizable="true">
+
+                                                <ui:template>
+                                                    <Button width="40px"
+                                                        type="{= ${localJson>DelInd} === 'X' ? 'Accept' : 'Reject'}"
+                                                        enabled="{= ${localJson>/editMode} === false ? false :  ${localJson>/estimatedMode} === true ? false : ${localJson>SrvStatus} !== 'A' }"
+                                                        icon="{= ${localJson>DelInd} === 'X' ? 'sap-icon://undo' : 'sap-icon://delete'}"
+                                                        press="onDeleteBuilding" />
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:Table>
+
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                    <uxap:ObjectPageSection title="{i18n>GeneralBOQList}"  visible="{= ${localJson>/myWBSSet}.length > 0}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="{i18n>GeneralBOQList}">
+
+                                <uxap:blocks>
+                                    <ui:Table id="IdWBSTable" rows="{ path: 'localJson>/myWBSSet' }" visibleRowCount="5"
+                                        selectionMode="None">
+                                        <ui:toolbar>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="{i18n>GeneralBOQList} " level="H2" />
+                                                    <Text text="({localJson>/WbslistNo})"></Text>
+                                                    <ToolbarSpacer />
+
+                                                </content>
+                                            </OverflowToolbar>
+                                        </ui:toolbar>
+                                        <ui:columns>
+                                            <ui:Column width="140px" autoResizable="true">
+                                                <Label text="{i18n>ContractualIndicator}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Txt}" />
+
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="80px" autoResizable="true">
+                                                <Label text="{i18n>Building}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Model}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                                 <ui:Column width="185px" autoResizable="true">
+                                                <Label text="{i18n>WBSCODE}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>WbsCode}" />
+
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                            <ui:Column width="190px" autoResizable="true">
+                                                <Label text="{i18n>WBSDescription}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>IdText}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="55px" autoResizable="true">
+                                                <Label text="{i18n>Boq}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>Group}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+
+                                            <ui:Column width="280px" autoResizable="true">
+                                                <Label text="{i18n>Description}" />
+                                                <ui:template>
+                                                    <Text text="{localJson>BoqDesc}"></Text>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="160px" autoResizable="true">
+                                                <Label text="{i18n>Status}" />
+                                                <ui:template>
+                                                    <ComboBox selectedKey="{localJson>SrvStatus}" enabled="false" items="{path: '/ValueHelpSet', 
+                                    filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'STATUSBoq'}]}">
+                                                        <items>
+                                                            <core:Item text="{IdText}" key="{IdNumber}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="60px" autoResizable="true">
+
+                                                <ui:template>
+
+                                                    <Button width="40px"
+                                                        type="{= ${localJson>DelInd} === 'X' ? 'Accept' : 'Reject'}"
+                                                        icon="{= ${localJson>DelInd} === 'X' ? 'sap-icon://undo' : 'sap-icon://delete'}"
+                                                        press="onDeleteWBS" />
+                                                </ui:template>
+                                            </ui:Column>
+
+
+
+                                        </ui:columns>
+
+                                    </ui:Table>
+
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                     <uxap:ObjectPageSection titleUppercase="false" title="{i18n>PurchaseRequisitionList}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="{i18n>PurchaseRequisitionList}">
+
+                           <uxap:blocks>
+                             
+                               <core:Fragment fragmentName="com.cicre.po.view.PRfragments.PurchaseRequisition" type="XML"  />
+
+                           </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+
+                    <uxap:ObjectPageSection title="{i18n>VariationOrder}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="{i18n>VariationOrder}">
+                                <uxap:blocks>
+                                    <ui:Table visible="true"
+                                        rows="{ path: 'localJson>/HeadToHeadVariation',filters: [{path: 'OrderType', operator: 'EQ', value1: 'V'}] }"
+                                        visibleRowCount="5" selectionMode="None">
+                                        <ui:extension>
+                                            <OverflowToolbar>
+                                                <ToolbarSpacer />
+                                                <Button type="Accept" icon="sap-icon://add" press="handlevariationOrder"
+                                                    enabled="false" />
+
+                                            </OverflowToolbar>
+                                        </ui:extension>
+                                        <!--enabled="{= ${localJson>Status} === 'R' ? false : true}"-->
+                                        <ui:columns>
+                                            <ui:Column width="80px" autoResizable="true">
+                                                <Label text="{i18n>VariationOrder}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>UserOrder}" type="Number"
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}"
+                                                        change="handelValuseUserOrder"
+                                                        valueState="{path : 'localJson>OrderDesc', formatter : 'com.cicre.po.model.formatter.valueState'}" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Description}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>OrderDesc}"
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}"
+                                                        valueState="{path : 'localJson>OrderDesc', formatter : 'com.cicre.po.model.formatter.valueState'}" />
+                                                    <!-- valueState="{path : 'localJson>OrderDesc', formatter : 'com.cicre.po.model.formatter.authXBoolean'}"
+										 valueState="Error"-->
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Type}" />
+                                                <ui:template>
+                                                    <!--id="idOrdTyp"-->
+                                                    <ComboBox selectedKey="{localJson>Type}"
+                                                        change="handleChangeOrderType"
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}" items="{path: '/ValueHelpSet', 
+								          filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'OrdType'}]}">
+                                                        <items>
+                                                            <core:Item text="{IdText}" key="{IdNumber}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Date}" />
+                                                <ui:template>
+                                                    <!--change="loaddatevariation"-->
+
+                                                    <DatePicker enabled="{= ${localJson>OrderNo} !== '' ? false : true}"
+                                                        value="{path:'localJson>OrderDate', formatter: '.formatter.formatDate'}"
+                                                        displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd" />
+
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="200px" autoResizable="true">
+                                                <Label text="{i18n>Month}" />
+                                                <ui:template>
+
+                                                    <MultiComboBox items="{localJson>/IndexMonths}"
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}"
+                                                        selectedKeys="{localJson>MonthIndex}">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </MultiComboBox>
+
+
+
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="130px" autoResizable="true">
+                                                <Label text="{i18n>Add}" />
+                                                <ui:template>
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>AddValues'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        id="id_Add" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="130px" autoResizable="true">
+                                                <Label text="{i18n>Omission}" />
+                                                <ui:template>
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>OmissionValues'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        id="id_Omission" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="130px" autoResizable="true">
+                                                <Label text="{i18n>Amount}" />
+                                                <ui:template>
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>ChangeAmount'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        id="id_Amount" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="80px" autoResizable="true">
+                                                <Label text="{i18n>No of Day}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>DaysNo}" type="Number"
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="120px" autoResizable="true">
+                                                <Label text="{i18n>Status}" />
+                                                <ui:template>
+                                                    <ComboBox id="idCmboo" items="{localJson>/VStatus}" enabled="false"
+                                                        selectedKey="{localJson>Status}" change="hanleChane">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </ComboBox>
+
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="80px" autoResizable="true">
+                                                <Label text="{i18n>Release}" />
+                                                <ui:template>
+                                                    <Button press="onReleaseVeriation" text="Confirm"
+                                                        enabled="{= ${localJson>/editMode} === false ? false : ${localJson>Status} !== 'R' }" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="75px" autoResizable="true">
+                                                <Label text="{i18n>Cancel}" />
+                                                <ui:template>
+                                                    <Button press="onCancleVeriation" text="Cancel"
+                                                        enabled="{= ${localJson>/editMode} === false ? false : ${localJson>Status} === 'R' ? ${localJson>VarStatus} !== 'R' :  false }" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="41px" autoResizable="true">
+                                                <ui:template>
+                                                    <Button icon="sap-icon://detail-view"
+                                                        press="onPressVariationOrder" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="41px" autoResizable="true">
+                                                <ui:template>
+                                                    <Button icon="sap-icon://detail-view"
+                                                        press="onPressVariationOrdersrv" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                        </ui:columns>
+                                    </ui:Table>
+
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <!--Addendum-->
+
+                    <uxap:ObjectPageSection title="{i18n>Addendum}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection title="{i18n>Addendum}">
+                                <uxap:blocks>
+                                    <ui:Table visible="true" rows="false" visibleRowCount="5" selectionMode="None">
+                                        <ui:extension>
+                                            <OverflowToolbar>
+                                                <ToolbarSpacer />
+                                                <!--${localJson>/PurchDoc} !== ''-->
+
+                                                <Button type="Accept" icon="sap-icon://add" press="handdAdendum"
+                                                    enabled="false" />
+                                            </OverflowToolbar>
+                                        </ui:extension>
+                                        <ui:columns>
+                                            <ui:Column width="80px" autoResizable="true">
+                                                <Label text="{i18n>AddendumOrder}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>UserOrder}" type="Number"
+                                                        change="handelValuseUserOrder"
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}"
+                                                        valueState="{path : 'localJson>OrderDesc', formatter : 'com.cicre.po.model.formatter.valueState'}" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Description}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>OrderDesc}"
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}"
+                                                        valueState="{path : 'localJson>OrderDesc', formatter : 'com.cicre.po.model.formatter.valueState'}" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Type}" />
+                                                <ui:template>
+                                                    <!-- id="id_AddendumOrdTyp"-->
+                                                    <ComboBox selectedKey="{localJson>Type}"
+                                                        change="handleChangeOrderTypeA"
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}"
+                                                        items="{path: '/ValueHelpSet',filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'OrdType'}]}">
+                                                        <items>
+                                                            <core:Item text="{IdText}" key="{IdNumber}" />
+                                                        </items>
+                                                    </ComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="150px" autoResizable="true">
+                                                <Label text="{i18n>Date}" />
+                                                <ui:template>
+
+
+                                                    <DatePicker enabled="{= ${localJson>OrderNo} !== '' ? false : true}"
+                                                        value="{path:'localJson>OrderDate', formatter: '.formatter.formatDate'}"
+                                                        displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd" />
+
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="200px" autoResizable="true">
+                                                <Label text="{i18n>Month}" />
+                                                <ui:template>
+
+
+                                                    <MultiComboBox
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}" items="{path: '/ValueHelpSet', 
+								            filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'MONTHS'}]}"
+                                                        selectedKeys="{localJson>MonthIndex}">
+                                                        <items>
+                                                            <core:Item text="{IdText}" key="{IdNumber}" />
+                                                        </items>
+                                                    </MultiComboBox>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="130px" autoResizable="true">
+                                                <Label text="{i18n>Add}" />
+                                                <ui:template>
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>AddValues'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        id="id_AddAddendum" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="130px" autoResizable="true">
+                                                <Label text="{i18n>Omission}" />
+                                                <ui:template>
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>OmissionValues'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        id="id_OmissionAddendum" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="130px" autoResizable="true">
+                                                <Label text="{i18n>Amount}" />
+                                                <ui:template>
+                                                    <Input
+                                                        value="{ parts:[{path:'localJson>ChangeAmount'},{path:'localJson>/Currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                                                        id="id_AmountAddendum" enabled="false" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="80px" autoResizable="true">
+                                                <Label text="{i18n>No of Day}" />
+                                                <ui:template>
+                                                    <Input value="{localJson>DaysNo}" type="Number"
+                                                        enabled="{= ${localJson>OrderNo} !== '' ? false : true}" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="120px" autoResizable="true">
+                                                <Label text="{i18n>Status}" />
+                                                <ui:template>
+                                                    <ComboBox items="{localJson>/VStatus}" enabled="false"
+                                                        selectedKey="{localJson>Status}" change="hanleChane">
+                                                        <items>
+                                                            <core:Item text="{localJson>text}" key="{localJson>id}" />
+                                                        </items>
+                                                    </ComboBox>
+
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="80px" autoResizable="true">
+                                                <Label text="{i18n>Release}" />
+                                                <ui:template>
+                                                    <Button press="onReleaseVeriation" text="Confirm"
+                                                        enabled="{= ${localJson>/editMode} === false ? false : ${localJson>Status} !== 'R' }" />
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="75px" autoResizable="true">
+                                                <Label text="{i18n>Cancel}" />
+                                                <ui:template>
+                                                    <Button press="onCancleVeriation" text="Cancel"
+                                                        enabled="{= ${localJson>/editMode} === false ? false : ${localJson>Status} === 'R' }" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                            <ui:Column width="41px" autoResizable="true">
+
+                                                <ui:template>
+                                                    <Button icon="sap-icon://detail-view"
+                                                        press="onPressVariationOrder" />
+                                                </ui:template>
+                                            </ui:Column>
+
+                                        </ui:columns>
+                                    </ui:Table>
+
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                           		<!--الملاحظات -->
+				<uxap:ObjectPageSection titleUppercase="false" title ="{i18n>Note}" >
+					<uxap:subSections>
+						<uxap:ObjectPageSubSection>
+							<TextArea  value="{localJson>/PoNote}" id="idNote" change="onChangeNote" rows='4'  width="100%"/>	
+						</uxap:ObjectPageSubSection>
+					</uxap:subSections>
+				</uxap:ObjectPageSection>
+
+                    <uxap:ObjectPageSection title="{i18n>attachmentName}">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <!--<l:VerticalLayout>-->
+                                <List items="{localJson>/AttachmentSet}" delete="onAttachmentDelete">
+                                    <headerToolbar>
+                                        <Toolbar>
+                                            <ToolbarSpacer />
+                                            <Button icon="sap-icon://delete" type="Reject"
+                                                tooltip="{i18n>attachmentDelete}" press="onListDeletePress"
+                                                enabled="{localJson>/editMode}" />
+                                            <Button icon="sap-icon://add" type="Accept" tooltip="{i18n>attachmentAdd}"
+                                                press="handleAddAttachmentPress" enabled="{localJson>/editMode}" />
+                                        </Toolbar>
+                                    </headerToolbar>
+                                    <items>
+                                        <StandardListItem visible="{= ${localJson>Flag} !== 'D'}"
+                                            icon="sap-icon://document"
+                                            title="{localJson>Filename}.{localJson>Extension}" type="Active"
+                                            press="_onAttachmentItemPress" />
+                                    </items>
+                                </List>
+                                <!--</l:VerticalLayout>-->
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                </uxap:sections>
+            </uxap:ObjectPageLayout>
+        </content>
+        <footer>
+            <Toolbar>
+                <content>
+                    <Button icon="sap-icon://message-popup" text="{localJson>/MessagesLength}" type="Reject"
+                        press="onPressMessagePopover" />
+                    <ToolbarSpacer />
+                    <Button type="Emphasized" id="idNewTermsBtn" press="onSavePress" text="{i18n>Create}" />
+                </content>
+            </Toolbar>
+        </footer>
+    </Page>
+
+</mvc:View>

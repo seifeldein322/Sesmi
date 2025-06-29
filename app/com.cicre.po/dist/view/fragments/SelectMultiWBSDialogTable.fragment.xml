@@ -1,0 +1,70 @@
+<core:FragmentDefinition xmlns="sap.m" 
+xmlns:core="sap.ui.core" xmlns:t="sap.ui.table">
+	<t:Table rows="{localJson>/WBSSet}"
+	 selectionBehavior="Row"
+	 
+	 selectionMode="MultiToggle"
+	selectionChange="onWBSSelectionChange" >
+		<t:columns>
+			<t:Column>
+				<t:label 	>
+					<Label text="{i18n>WBS}" 	/>
+				</t:label>
+
+				
+				<t:template >
+					<Text text="{localJson>Model}" 	/>
+				</t:template>
+			</t:Column>
+
+				<t:Column>
+				<t:label 	>
+					<Label text="{i18n>WBS Code}" />
+				</t:label>
+				<t:template >
+					<Text text="{localJson>SelectionParameter}" 	/>
+				</t:template>
+			</t:Column>
+
+			<t:Column>
+				<t:label>
+					<Label text="{i18n>WBS Description}"/>
+				</t:label>
+				<t:template>
+					<Text text="{localJson>IdText}"/>
+				</t:template>
+			</t:Column>
+
+				<t:Column>
+				<t:label>
+					<Label text="{i18n>Group}"/>
+				</t:label>
+				<t:template>
+					<Text text="{localJson>SelectionParameter7}"/>
+				</t:template>
+			</t:Column>
+
+			<t:Column>
+				<t:label>
+					<Label text="{i18n>SelectBoq}"/>
+				</t:label>
+				<t:template>
+
+				 <Input showValueHelp="true" 
+                                    valueHelpOnly="true" 
+                                    width="170px"
+                                    value="{localJson>Group}"
+                                    valueHelpRequest="onDisplay2SearchSubBoqDialog"
+                                    showSuggestion="true">
+                                    <suggestionItems>
+                                        <core:Item text="{BoqSub}" key="{BoqSub}"/>
+                                    </suggestionItems>
+                                    </Input>
+				
+				</t:template>
+			</t:Column>
+		
+	
+		</t:columns>
+	</t:Table>
+</core:FragmentDefinition>

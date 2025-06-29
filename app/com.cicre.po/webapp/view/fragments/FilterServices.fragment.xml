@@ -1,0 +1,65 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog class="sapUiSizeCompact" title="{i18n>filterServices}">
+		<content>
+			<f:Form editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>displayBuildingId}"/>
+								</f:label>
+								<f:fields>
+									<MultiInput id="idFBuildingId" showValueHelp="true" valueHelpRequest="onBuildingValueHelpPress"
+										tokens="{ path: 'localJso>/Buildingss', sorter: { path: 'BuildingNo' } }">
+										<tokens>
+											<Token key="{localJso>BuildingNo}" text="{localJso>BuildingNo}"/>
+										</tokens>
+									</MultiInput>
+								</f:fields>
+							</f:FormElement>
+							
+							<f:FormElement visible="{= ${detailView>/SelectedServiceTablePath} === '/PCServiceSet'}">
+								<f:label>
+									<Label text="{i18n>Model}"/>
+								</f:label>
+								<f:fields>
+									<Input id="idSearchByModelFilter" showValueHelp="true"  change="changeBuildingfilter" valueHelpRequest="onDisplaySearchModelfilterOnBuilding" maxLength="9"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>Whole Contract}"/>
+								</f:label>
+								<f:fields>
+									<Button text="Whole Contract" press="_WholeContract" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label text="{i18n>displayContractualIndicator}"/>
+								</f:label>
+								<f:fields>
+									<MultiComboBox id="idFContractualIndicator"
+										items="{path: '/ValueHelpSet', filters: [{path: 'ValueHelpType', operator: 'EQ', value1: 'ContInd'}], templateShareable: false}">
+										<core:Item key="{IdNumber}" text="{IdText}"/>
+									</MultiComboBox>
+								</f:fields>
+							</f:FormElement>
+						
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://decline" tooltip="{i18n>detailCancel}" press="onCancelFilter"/>
+			<Button icon="sap-icon://clear-filter" tooltip="{i18n>filterClear}" press="onClearFilter"/>
+			<Button icon="sap-icon://filter" type="Emphasized" tooltip="{i18n>filterApply}" press="onApplyFilter"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

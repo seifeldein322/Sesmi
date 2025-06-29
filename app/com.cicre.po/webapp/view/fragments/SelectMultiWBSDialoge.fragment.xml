@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:vh="sap.ui.comp.valuehelpdialog" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<vh:ValueHelpDialog ok="onWBSSelectionChange" cancel="onWBSContractClose" title="{i18n>WBS}" 
+	 supportRanges="false" supportRangesOnly="false" key="Model" class="sapUiSizeCompact">
+			<vh:filterBar>
+
+			<fb:FilterBar advancedMode="true" showRestoreButton="true" filtersDialogSearchForFilter="onVHContractSearch" filterBarExpanded="true"
+				search="handleSearchWBSPress" filtersDialogSearch="onVHContractSearch" isRunningInValueHelpDialog="true" >
+                <fb:filterGroupItems>
+
+
+                        <fb:FilterGroupItem groupName="Contract" name="n3" label="{i18n>Group}"> 
+						<fb:control>
+							<Input id="idSearchWBSGroupDialog" showValueHelp="true"  change="cleanSearGroupWBS" valueHelpRequest="onDisplaySearchWBSGroup" maxLength="50"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+
+
+					<fb:FilterGroupItem groupName="WBS" name="n1" label="{i18n>WBS}">
+						<fb:control>
+							<Input id="idSearchWBSDialog" valueHelpRequest="onSearchWBSDialog" showValueHelp="true"   change="cleanWBSDialog" maxLength="50"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+
+						<fb:FilterGroupItem groupName="GroupBoq" name="n1" label="{i18n>Boq}">
+						<fb:control>
+							<Input id="idSearchGroupBoqDialog" enabled = "{localJson>/selectGroupBoq}"
+							 valueHelpRequest="onSearchGroupBoqDialog" showValueHelp="true"   change="cleanGroupBoqDialog" maxLength="50"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+               </fb:filterGroupItems>
+				</fb:FilterBar>
+			</vh:filterBar>
+		
+	</vh:ValueHelpDialog>
+</core:FragmentDefinition>

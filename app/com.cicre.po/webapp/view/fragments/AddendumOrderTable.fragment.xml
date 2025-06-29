@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog resizable="true" class="sapUiSizeCompact" title="{i18n>Addendum Order}">
+	
+		<content>
+			<Panel width="80rem">
+				<Table id="idBuildingss">
+					<columns>
+						
+						<Column><Text text="{i18n>Action}"/></Column>
+                        <Column><Text text="{i18n>Building Id}"/></Column>
+                        <Column><Text text="{i18n>Zone Code}"/></Column>
+						<Column><Text text="{i18n>Group Code}"/></Column>
+                        <Column><Text text="{i18n>Model}"/></Column>
+						
+                        <Column><Text text="{i18n>Model Description}"/></Column>
+                        <Column><Text text="{i18n>Boq}"/></Column>
+                         <Column><Text text="{i18n>Boq Description}"/></Column>
+                         <Column><Text text="{i18n>Amount}"/></Column>
+					</columns>
+				</Table>
+			</Panel>
+		</content>
+		<buttons>
+			<Button text="{i18n>Close}" press="handleCloseAddendum"/>
+<!--	<Button  type="Emphasized"
+				visible="{= ${detailView>/Visible}}"/>-->
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog class="sapUiSizeCompact" title="{localJson>title}">
+		<content>
+			<ObjectHeader title="{localJson>texts/3}" intro="{localJson>titleAbbreviation}">
+				<statuses>
+					<ObjectStatus text="{localJson>stateText}" state="{path:'localJson>texts/2',formatter:'com.cicre.po.model.formatter.getDecisionState'}"/>
+					<ObjectStatus text="{localJson>texts/0}" state="{path:'localJson>texts/2',formatter:'com.cicre.po.model.formatter.getDecisionState'}"/>
+					<ObjectStatus text="{localJson>texts/1}" state="None"/>
+				</statuses>
+			</ObjectHeader>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://decline" tooltip="{i18n>additionalDataClose}" press="onCloseProcessFlow"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
